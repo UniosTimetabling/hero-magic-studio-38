@@ -72,7 +72,7 @@ function Index() {
   return <SiteLayout>
     <section className="hero" aria-roledescription="carousel" aria-label="Publishing highlights" data-playing={autoPlaying} onMouseEnter={() => setInteracting(true)} onMouseLeave={() => setInteracting(false)} onFocusCapture={() => setInteracting(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false); }}>
       <div className="hero-viewport" ref={carouselRef}><div className="hero-track">
-        {slides.map((current, i) => <div className={`hero-slide hero-slide-${current.theme}`} key={current.key ?? current.theme} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} aria-hidden={slide !== i} inert={slide !== i}>
+        {slides.map((current, i) => <div className={`hero-slide hero-slide-${current.theme}`} key={i} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} aria-hidden={slide !== i} inert={slide !== i}>
           <img className="hero-image" src={current.image} alt={current.alt} width={1440} height={768} fetchPriority={i === 0 ? 'high' : 'auto'} />
           <div className="container hero-content"><span className="eyebrow">{current.eyebrow}</span><h1>{current.title}</h1><p>{current.text}</p><div className="hero-actions"><Button asChild variant="hero"><Link to={current.to}>{current.cta}<ChevronRight /></Link></Button><Link to="/about" className="hero-secondary">Get to know Finesse <ArrowUpRight size={16} /></Link></div></div>
         </div>)}
