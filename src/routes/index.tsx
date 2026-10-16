@@ -14,6 +14,9 @@ import heroPen from '@/assets/hero-pen-red.jpg';
 import heroLibrary from '@/assets/hero-library-blue.jpg';
 import heroIdea from '@/assets/hero-idea-green.jpg';
 import heroBooks from '@/assets/hero-books-blue.jpg';
+import heroReading from '@/assets/hero-reading-room-green.jpg';
+import heroJournals from '@/assets/hero-journals-red.jpg';
+import heroDigital from '@/assets/hero-digital-blue.jpg';
 
 export const Route = createFileRoute("/")({
   head: () => pageHead('Publishing & knowledge resources', 'Finesse Publishing Limited provides quality book publishing, distribution, journal subscriptions, digital resources and research consultancy in Nairobi.', hero),
@@ -22,11 +25,14 @@ export const Route = createFileRoute("/")({
 
 const slides = [
   { image: hero, theme: 'green', alt: 'Hardcover books on a forest-green table', eyebrow: 'QUALITY. VALUE. CONVENIENCE.', title: <>Finesse<br />Publishing Limited</>, text: 'Your partner in quality publishing, book distribution and information resources for research, teaching and learning.', cta: 'Explore our resources', to: '/resources' },
+  { image: heroReading, theme: 'green', key: 'reading', alt: 'Library reading room with wooden tables and full bookshelves', eyebrow: 'LIBRARIES & INFORMATION CENTRES', title: <>Spaces built<br />for learning</>, text: 'We stock, organize and equip libraries so students and researchers find what they need.', cta: 'Library services', to: '/services' },
   { image: heroRed, theme: 'red', alt: 'Burgundy cloth-bound books on a crimson table', eyebrow: 'FROM MANUSCRIPT TO PUBLISHED WORK', title: <>Book publishing<br />for the modern<br />society</>, text: 'Credible manuscripts. High-quality publishing. Hardcover, paperback and digital formats for your ideas.', cta: 'Explore publishing', to: '/services' },
   { image: heroBlue, theme: 'blue', alt: 'Blue cloth-bound books on a petrol-blue table', eyebrow: 'RESEARCH. TEACHING. LEARNING.', title: <>Quality information<br />resources</>, text: 'Books, journals and digital content that meet the emerging information needs of individuals and institutions.', cta: 'Discover our services', to: '/services' },
   { image: heroPen, theme: 'red', key: 'pen', alt: 'Fountain pen on handwritten manuscript pages beside old books', eyebrow: 'EDITING. DESIGN. PRINT.', title: <>Every great book<br />starts with<br />a manuscript</>, text: 'We guide your work from first draft to finished book, with careful editing and good style.', cta: 'Publish with us', to: '/services' },
   { image: heroLibrary, theme: 'blue', key: 'library', alt: 'Reading desk and lamp beside a full bookshelf', eyebrow: 'LIBRARY & INFORMATION CONSULTANCY', title: <>A stronger library<br />for your institution</>, text: 'Collection development, book processing, library planning and training tailored to your needs.', cta: 'Our consultancy', to: '/services' },
   { image: heroIdea, theme: 'green', key: 'idea', alt: 'Glowing light bulb in fresh grass on an open book', eyebrow: 'RESEARCH CONSULTANCY', title: <>Insight for<br />informed decisions</>, text: 'Commissioned research in health, education, policy, market surveys and technology.', cta: 'Explore research', to: '/services' },
+  { image: heroJournals, theme: 'red', key: 'journals', alt: 'Wooden stand of academic journals beside a brass lamp', eyebrow: 'JOURNAL SUBSCRIPTION SERVICE', title: <>Research that<br />keeps you informed</>, text: 'Journal subscriptions for schools, universities, research organizations and corporations.', cta: 'Subscribe with us', to: '/services' },
+  { image: heroDigital, theme: 'blue', key: 'digital', alt: 'Laptop and tablet beside hardcover books on a wooden desk', eyebrow: 'E-BOOKS & E-JOURNALS', title: <>Knowledge beyond<br />the printed page</>, text: 'Digital content on the FinesseGlobal platform for every learning and research need.', cta: 'Go digital', to: '/resources' },
   { image: heroBooks, theme: 'blue', key: 'books', alt: 'Colourful hardcover books standing in a zig-zag row', eyebrow: 'BOOK SUPPLY & DISTRIBUTION', title: <>Quality books.<br />Reliable delivery.</>, text: 'Efficient book supply to libraries, schools, universities and research organizations.', cta: 'Book supply', to: '/services' },
 ] as const;
 
@@ -66,7 +72,7 @@ function Index() {
   return <SiteLayout>
     <section className="hero" aria-roledescription="carousel" aria-label="Publishing highlights" data-playing={autoPlaying} onMouseEnter={() => setInteracting(true)} onMouseLeave={() => setInteracting(false)} onFocusCapture={() => setInteracting(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false); }}>
       <div className="hero-viewport" ref={carouselRef}><div className="hero-track">
-        {slides.map((current, i) => <div className={`hero-slide hero-slide-${current.theme}`} key={current.theme} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} aria-hidden={slide !== i} inert={slide !== i}>
+        {slides.map((current, i) => <div className={`hero-slide hero-slide-${current.theme}`} key={current.key ?? current.theme} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} aria-hidden={slide !== i} inert={slide !== i}>
           <img className="hero-image" src={current.image} alt={current.alt} width={1440} height={768} fetchPriority={i === 0 ? 'high' : 'auto'} />
           <div className="container hero-content"><span className="eyebrow">{current.eyebrow}</span><h1>{current.title}</h1><p>{current.text}</p><div className="hero-actions"><Button asChild variant="hero"><Link to={current.to}>{current.cta}<ChevronRight /></Link></Button><Link to="/about" className="hero-secondary">Get to know Finesse <ArrowUpRight size={16} /></Link></div></div>
         </div>)}
