@@ -1,0 +1,10 @@
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ChevronRight } from 'lucide-react';
+import { SiteLayout, PageIntro, ResourceGrid, ReadingBanner } from '@/components/site/site';
+import { Button } from '@/components/ui/button';
+import { pageHead } from '@/lib/company';
+
+export const Route = createFileRoute('/resources')({ head: () => pageHead('Print & digital knowledge resources', 'Explore print books, academic journal subscriptions, e-books and e-journals from Finesse Publishing Limited and enquire about your institution’s requirements.'), component: Resources });
+function Resources() {
+ return <SiteLayout><PageIntro eyebrow="Resources" title="A world of knowledge." description="Print and digital resources to meet the research and learning requirements of your organization." /><section id="resource-formats" className="container section"><ResourceGrid expanded /><p className="resource-note">Cover images illustrate resource formats, not individual catalogue titles. Contact us for available titles and subscriptions.</p></section><section id="finesseglobal" className="digital-band"><div className="container"><div><span className="eyebrow">DIGITAL PUBLISHING</span><h2>FinesseGlobal</h2></div><p>Through our FinesseGlobal platform, we publish and provide access to digital content that meets the research and learning requirements of each organization.</p><Button asChild variant="hero"><Link to="/contact">Enquire about access <ChevronRight /></Link></Button></div></section><section id="library-collections" className="container section"><div className="section-heading"><span className="eyebrow">LIBRARIES & INFORMATION CENTRES</span><h2>Build the collection you need.</h2><p>We supply and distribute books efficiently and reliably, and provide tailored advice on collections that fit your course and programme requirements.</p><div className="center-action"><Button asChild variant="brand"><Link to="/services" hash="book-supply">Book supply & distribution <ChevronRight /></Link></Button></div></div></section><ReadingBanner /></SiteLayout>;
+}

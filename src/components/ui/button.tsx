@@ -9,10 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        scroll: "page-scroll-button",
+        carousel: "hero-arrow border border-on-dark/50 bg-forest/30 text-on-dark hover:bg-on-dark hover:text-forest",
+        hero: "brand-button rounded-full bg-lime text-foreground hover:bg-lime/85 shadow-none h-14 px-7 text-lg font-semibold",
+        brand: "brand-button rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-none h-13 px-6 text-base font-semibold",
+        tab: "rounded-md bg-transparent text-muted-foreground shadow-none hover:text-primary h-10 px-6",
+        tabActive: "rounded-md bg-primary text-primary-foreground shadow-none h-10 px-6",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-card shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
