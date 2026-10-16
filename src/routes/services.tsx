@@ -1,0 +1,10 @@
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { SiteLayout, PageIntro, SectionHeading, serviceIcons } from '@/components/site/site';
+import { Button } from '@/components/ui/button';
+import { consultancy, services, pageHead } from '@/lib/company';
+
+export const Route = createFileRoute('/services')({ head: () => pageHead('Publishing, distribution & consultancy services', 'Explore book supply, journal subscriptions, book and digital publishing, research consultancy, library development and information management services.'), component: Services });
+function Services() {
+ return <SiteLayout><PageIntro eyebrow="Our services" title="Expertise that connects you to knowledge." description="Quality publishing, reliable distribution and customer-tailored consultancy for individuals, institutions and organizations." /><section className="container section service-details">{services.map(s => { const Icon = serviceIcons[s.icon]; return <article id={s.id} key={s.id} className="service-detail"><Icon size={32} strokeWidth={1.4} /><span className="eyebrow">{s.short}</span><h2>{s.title}</h2><p>{s.description}</p><Button asChild variant="outline"><Link to="/contact">Discuss your requirements <ChevronRight /></Link></Button></article>; })}</section><section className="section consultancy-section" id="consultancy-details"><div className="container"><SectionHeading eyebrow="TAILORED TO YOUR ORGANIZATION" title="Our consultancy expertise" description="Practical support for libraries, information centres, publishers and research organizations." /><div className="consultancy-grid">{consultancy.map(([title, text]) => <details key={title}><summary>{title}<ChevronDown size={18} /></summary><p>{text}</p></details>)}</div><div className="center-action"><Button asChild variant="brand"><Link to="/contact">Talk to our team <ChevronRight /></Link></Button></div></div></section></SiteLayout>;
+}
